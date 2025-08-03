@@ -213,12 +213,6 @@
             text-align: center;
         }
 
-        .profile-header {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
         .profile-img {
             width: 300px;
             height: 300px;
@@ -230,6 +224,16 @@
             margin: 0 auto;
             box-shadow: 0 20px 40px rgba(85, 25, 139, 0.3);
             animation: float 6s ease-in-out infinite;
+            overflow: hidden;
+            padding: 8px; /* Creates border effect */
+        }
+
+        .profile-img img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            background: white;
         }
 
         .profile-img i {
@@ -575,9 +579,10 @@
                     </div>
                 </div>
 
-                <div class="hero-image fade-in">
+               <div class="hero-image fade-in">
                     <div class="profile-img">
-                        <i class="fas fa-code"></i>
+                        <img src="assets/SamanJamil.jpg" alt="Saman Jamil" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <i class="fas fa-code" style="display: none;"></i>
                     </div>
                 </div>
                 </div>
@@ -1123,6 +1128,7 @@
 </body>
 
 </html>
+
 
 
 
