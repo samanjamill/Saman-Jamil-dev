@@ -392,8 +392,26 @@
         }
 
         .project-icon {
+            width: 80px;                          /* ✅ ADDED */
+            height: 80px;                         /* ✅ ADDED */
+            margin: 0 auto 1rem auto;             /* ✅ MODIFIED */
+            border-radius: 15px;                  /* ✅ ADDED */
+            display: flex;                        /* ✅ ADDED */
+            align-items: center;                  /* ✅ ADDED */
+            justify-content: center;              /* ✅ ADDED */
+            background: rgba(255, 255, 255, 0.2); /* ✅ ADDED */
+            backdrop-filter: blur(10px);          
+        }
+
+        .project-icon img {                       /* ✅ ADDED ENTIRE BLOCK */
+            width: 60px;
+            height: 60px;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+
+        .project-icon.emoji {                     /* ✅ ADDED ENTIRE BLOCK */
             font-size: 3rem;
-            margin-bottom: 1rem;
         }
 
         .project-title {
@@ -739,7 +757,9 @@
             <div class="projects-grid">
                 <div class="project-card fade-in">
                     <div class="project-header">
-                        <div class="project-icon">🤖</div>
+                        <div class="project-icon">
+                            <img src="assets/chatbot-project.jpg" alt="AI Chatbot" onerror="this.parentElement.classList.add('emoji'); this.parentElement.innerHTML='🤖';">
+                        </div>
                         <div class="project-title">AI-Powered Company Chatbot</div>
                     </div>
                     <div class="project-content">
@@ -755,7 +775,9 @@
 
                 <div class="project-card fade-in">
                     <div class="project-header">
-                        <div class="project-icon">⚡</div>
+                        <div class="project-icon">
+                            <img src="assets/automation-project.png" alt="Customer Onboarding" onerror="this.parentElement.classList.add('emoji'); this.parentElement.innerHTML='⚡';">
+                        </div>
                         <div class="project-title">Customer Onboarding Automation</div>
                     </div>
                     <div class="project-content">
@@ -771,7 +793,9 @@
 
                 <div class="project-card fade-in">
                     <div class="project-header">
-                        <div class="project-icon">🤲</div>
+                        <div class="project-icon">
+                            <img src="assets/sign-language-project.jpg" alt="Sign Language Translator" onerror="this.parentElement.classList.add('emoji'); this.parentElement.innerHTML='🤲';">
+                        </div>
                         <div class="project-title">Idra'ak - Sign Language Translator</div>
                     </div>
                     <div class="project-content">
@@ -787,7 +811,9 @@
 
                 <div class="project-card fade-in">
                     <div class="project-header">
-                        <div class="project-icon">👥</div>
+                        <div class="project-icon">
+                            <img src="assets/social-platform-project.jpg" alt="VeteranMeet Social Platform" onerror="this.parentElement.classList.add('emoji'); this.parentElement.innerHTML='👥';">
+                        </div>
                         <div class="project-title">VeteranMeet Social Platform</div>
                     </div>
                     <div class="project-content">
@@ -803,7 +829,9 @@
 
                 <div class="project-card fade-in">
                     <div class="project-header">
-                        <div class="project-icon">💊</div>
+                       <div class="project-icon">
+                            <img src="assets/pharmacy-project.png" alt="Pharmacy System" onerror="this.parentElement.classList.add('emoji'); this.parentElement.innerHTML='💊';">
+                        </div>
                         <div class="project-title">Jannat Noor Pharmacy System</div>
                     </div>
                     <div class="project-content">
@@ -818,7 +846,9 @@
 
                 <div class="project-card fade-in">
                     <div class="project-header">
-                        <div class="project-icon">👶</div>
+                        <div class="project-icon">
+                            <img src="assets/under3-project.jpg" alt="Under3 Mobile App" onerror="this.parentElement.classList.add('emoji'); this.parentElement.innerHTML='👶';">
+                        </div>
                         <div class="project-title">Under3 Mobile App</div>
                     </div>
                     <div class="project-content">
@@ -1128,6 +1158,7 @@
 </body>
 
 </html>
+
 
 
 
