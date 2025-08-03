@@ -391,7 +391,7 @@
     text-align: center;
     position: relative;                    /* ✅ ADDED */
     overflow: hidden;                      /* ✅ ADDED */
-    min-height: 180px;                     /* ✅ ADDED */
+    min-height: 250px; /* Increased from 180px */
     display: flex;                         /* ✅ ADDED */
     flex-direction: column;                /* ✅ ADDED */
     align-items: center;                   /* ✅ ADDED */
@@ -401,6 +401,7 @@
 .project-header.with-image {               /* ✅ ADDED ENTIRE BLOCK */
     background: none;
     padding: 0;
+    min-height: 280px; /* Increased height for image headers */
 }
 
 .project-header-bg {                       /* ✅ ADDED ENTIRE BLOCK */
@@ -410,6 +411,7 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
+object-position: center; /* Better image positioning */
     z-index: 1;
 }
 
@@ -419,29 +421,35 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(135deg, rgba(85, 25, 139, 0.9) 0%, rgba(123, 44, 191, 0.8) 100%);
+    background: linear-gradient(135deg, rgba(85, 25, 139, 0.8) 0%, rgba(123, 44, 191, 0.7) 100%);
     z-index: 2;
 }
 
-.project-header-content {                  /* ✅ ADDED ENTIRE BLOCK */
+.project-header-content {
     position: relative;
     z-index: 3;
-    padding: 2rem;
+    padding: 2.5rem 2rem; /* Increased padding */
     text-align: center;
+    width: 100%; /* Ensure full width */
+    display: flex; /* Added flex */
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 280px; /* Match parent height */
 }
 
         .project-icon {
-            width: 80px;                          /* ✅ ADDED */
-            height: 80px;                         /* ✅ ADDED */
-            margin: 0 auto 1rem auto;             /* ✅ MODIFIED */
-            border-radius: 15px;                  /* ✅ ADDED */
-            display: flex;                        /* ✅ ADDED */
-            align-items: center;                  /* ✅ ADDED */
-            justify-content: center;              /* ✅ ADDED */
-            background: rgba(255, 255, 255, 0.2); /* ✅ ADDED */
-            backdrop-filter: blur(10px);          
-        }
-
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 1.5rem auto; /* Increased bottom margin */
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.25); /* Slightly more opaque */
+    backdrop-filter: blur(10px);
+    flex-shrink: 0; /* Prevent shrinking */
+}
         .project-icon img {                       /* ✅ ADDED ENTIRE BLOCK */
             width: 60px;
             height: 60px;
@@ -454,10 +462,56 @@
         }
 
         .project-title {
-            font-size: 1.3rem;
-            font-weight: bold;
-            margin-bottom: 0.5rem;
-        }
+    font-size: 1.4rem; /* Slightly larger */
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    line-height: 1.3; /* Better line height */
+    max-width: 100%; /* Prevent overflow */
+    word-wrap: break-word; /* Handle long titles */
+}
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .project-header,
+    .project-header.with-image {
+        min-height: 220px; /* Smaller on mobile */
+    }
+    
+    .project-header-content {
+        padding: 2rem 1.5rem;
+        min-height: 220px;
+    }
+    
+    .project-icon {
+        width: 70px;
+        height: 70px;
+        margin-bottom: 1rem;
+    }
+    
+    .project-icon img {
+        width: 50px;
+        height: 50px;
+    }
+    
+    .project-title {
+        font-size: 1.2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .project-header,
+    .project-header.with-image {
+        min-height: 200px;
+    }
+    
+    .project-header-content {
+        padding: 1.5rem 1rem;
+        min-height: 200px;
+    }
+    
+    .project-title {
+        font-size: 1.1rem;
+    }
+}
 
         .project-content {
             padding: 2rem;
@@ -1222,6 +1276,7 @@
 </body>
 
 </html>
+
 
 
 
