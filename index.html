@@ -402,84 +402,112 @@
             color: var(--text-light);
         }
 
-        /* Enhanced Skills Section */
+        /* NEW: Flowing Skills Design - No Boxes! */
         .skills-container {
             position: relative;
-            padding: 2rem 0;
+            padding: 3rem 0;
         }
 
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 2rem;
+        .skills-flow {
+            display: flex;
+            flex-direction: column;
+            gap: 4rem;
             margin-top: 3rem;
         }
 
-        .skill-category {
-            background: linear-gradient(145deg, rgba(255,255,255,0.1), rgba(255,255,255,0.05));
-            backdrop-filter: blur(20px);
-            padding: 2.5rem;
-            border-radius: 25px;
-            border: 1px solid rgba(255,255,255,0.2);
-            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
-            transition: all 0.4s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .skill-category::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(6,255,165,0.1), transparent);
-            transition: left 0.8s ease;
-        }
-
-        .skill-category:hover::before {
-            left: 100%;
-        }
-
-        .skill-category:hover {
-            transform: translateY(-10px) scale(1.02);
-            box-shadow: 0 20px 60px rgba(85, 25, 139, 0.3);
-            border-color: var(--accent-color);
-        }
-
-        .skill-category h3 {
-            color: var(--primary-color);
-            margin-bottom: 2rem;
-            font-size: 1.4rem;
+        .skill-section {
             display: flex;
             align-items: center;
-            gap: 15px;
+            gap: 3rem;
             position: relative;
-            z-index: 1;
         }
 
-        .skill-category h3 i {
-            font-size: 2rem;
+        .skill-section:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+
+        .skill-icon {
+            width: 120px;
+            height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             background: var(--gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            border-radius: 50%;
+            color: white;
+            font-size: 3rem;
+            box-shadow: 0 20px 60px rgba(85, 25, 139, 0.4);
+            position: relative;
+            flex-shrink: 0;
+            transition: all 0.4s ease;
         }
 
-        .skill-tags {
+        .skill-icon::before {
+            content: '';
+            position: absolute;
+            inset: -5px;
+            background: var(--neon-gradient);
+            border-radius: 50%;
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .skill-icon:hover::before {
+            opacity: 1;
+        }
+
+        .skill-icon:hover {
+            transform: scale(1.1) rotate(10deg);
+        }
+
+        .skill-content {
+            flex: 1;
+            position: relative;
+        }
+
+        .skill-title {
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            position: relative;
+        }
+
+        .skill-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: var(--accent-color);
+            border-radius: 2px;
+        }
+
+        .skill-section:nth-child(even) .skill-title::after {
+            left: auto;
+            right: 0;
+        }
+
+        .skill-description {
+            font-size: 1.1rem;
+            color: var(--text-light);
+            margin-bottom: 2rem;
+            line-height: 1.8;
+        }
+
+        .skill-items {
             display: flex;
             flex-wrap: wrap;
             gap: 12px;
-            position: relative;
-            z-index: 1;
         }
 
-        .skill-tag {
-            background: var(--gradient);
+        .skill-item {
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
             color: white;
-            padding: 10px 20px;
-            border-radius: 30px;
+            padding: 8px 18px;
+            border-radius: 25px;
             font-size: 0.9rem;
             font-weight: 600;
             transition: all 0.3s ease;
@@ -488,7 +516,7 @@
             overflow: hidden;
         }
 
-        .skill-tag::before {
+        .skill-item::before {
             content: '';
             position: absolute;
             top: 0;
@@ -499,16 +527,39 @@
             transition: left 0.5s ease;
         }
 
-        .skill-tag:hover::before {
+        .skill-item:hover::before {
             left: 100%;
         }
 
-        .skill-tag:hover {
-            transform: translateY(-3px) scale(1.1);
+        .skill-item:hover {
+            transform: translateY(-3px) scale(1.05);
             box-shadow: 0 8px 25px rgba(85, 25, 139, 0.4);
         }
 
-        /* Revolutionary Projects Section */
+        /* Connecting Lines */
+        .skill-section::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            right: -2rem;
+            width: 4rem;
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary-color), transparent);
+            transform: translateY(-50%);
+            z-index: -1;
+        }
+
+        .skill-section:nth-child(even)::after {
+            left: -2rem;
+            right: auto;
+            background: linear-gradient(-90deg, var(--primary-color), transparent);
+        }
+
+        .skill-section:last-child::after {
+            display: none;
+        }
+
+        /* Smaller Projects Section */
         .projects {
             background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
             position: relative;
@@ -527,8 +578,8 @@
 
         .projects-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-            gap: 3rem;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
             margin-top: 4rem;
             position: relative;
             z-index: 1;
@@ -537,12 +588,14 @@
         .project-card {
             background: linear-gradient(145deg, rgba(255,255,255,0.9), rgba(255,255,255,0.7));
             backdrop-filter: blur(20px);
-            border-radius: 25px;
+            border-radius: 20px;
             overflow: hidden;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
-            transition: all 0.5s ease;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+            transition: all 0.4s ease;
             position: relative;
             border: 1px solid rgba(255,255,255,0.3);
+            max-width: 400px;
+            margin: 0 auto;
         }
 
         .project-card::before {
@@ -551,25 +604,25 @@
             top: 0;
             left: 0;
             right: 0;
-            height: 4px;
+            height: 3px;
             background: var(--neon-gradient);
             background-size: 300% 300%;
             animation: gradient-shift 3s ease-in-out infinite;
         }
 
         .project-card:hover {
-            transform: translateY(-15px) rotateX(5deg);
-            box-shadow: 0 25px 80px rgba(85, 25, 139, 0.3);
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 60px rgba(85, 25, 139, 0.3);
         }
 
         .project-header {
             background: var(--gradient);
             color: white;
-            padding: 3rem 2rem;
+            padding: 2rem 1.5rem;
             text-align: center;
             position: relative;
             overflow: hidden;
-            min-height: 200px;
+            min-height: 140px;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -588,9 +641,9 @@
         }
 
         .project-icon {
-            width: 80px;
-            height: 80px;
-            margin-bottom: 1.5rem;
+            width: 60px;
+            height: 60px;
+            margin-bottom: 1rem;
             position: relative;
             z-index: 1;
             display: flex;
@@ -598,29 +651,29 @@
             justify-content: center;
             background: rgba(255, 255, 255, 0.15);
             backdrop-filter: blur(10px);
-            border-radius: 20px;
+            border-radius: 15px;
             border: 2px solid rgba(255, 255, 255, 0.3);
             animation: bounce 2s ease-in-out infinite;
         }
 
         .project-icon img {
-            width: 50px;
-            height: 50px;
+            width: 35px;
+            height: 35px;
             object-fit: contain;
         }
 
         .project-icon i {
-            font-size: 2.5rem;
+            font-size: 2rem;
             color: white;
         }
 
         @keyframes bounce {
             0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
+            50% { transform: translateY(-8px); }
         }
 
         .project-title {
-            font-size: 1.5rem;
+            font-size: 1.3rem;
             font-weight: bold;
             margin-bottom: 0.5rem;
             position: relative;
@@ -628,30 +681,30 @@
         }
 
         .project-content {
-            padding: 2.5rem;
+            padding: 1.5rem;
             position: relative;
         }
 
         .project-content p {
-            font-size: 1.1rem;
-            line-height: 1.7;
-            margin-bottom: 2rem;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
             color: var(--text-color);
         }
 
         .tech-stack {
             display: flex;
             flex-wrap: wrap;
-            gap: 10px;
-            margin-top: 1.5rem;
+            gap: 8px;
+            margin-top: 1rem;
         }
 
         .tech-tag {
             background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
             color: white;
-            padding: 8px 16px;
-            border-radius: 20px;
-            font-size: 0.85rem;
+            padding: 6px 14px;
+            border-radius: 15px;
+            font-size: 0.8rem;
             font-weight: 600;
             transition: all 0.3s ease;
             cursor: pointer;
@@ -664,22 +717,23 @@
 
         .project-links {
             display: flex;
-            gap: 1rem;
-            margin-top: 1.5rem;
+            gap: 0.8rem;
+            margin-top: 1rem;
         }
 
         .project-link {
-            padding: 10px 20px;
+            padding: 8px 16px;
             background: transparent;
             border: 2px solid var(--primary-color);
             color: var(--primary-color);
-            border-radius: 25px;
+            border-radius: 20px;
             text-decoration: none;
             font-weight: 600;
+            font-size: 0.9rem;
             transition: all 0.3s ease;
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 6px;
         }
 
         .project-link:hover {
@@ -926,8 +980,20 @@
                 grid-template-columns: 1fr;
             }
 
-            .skills-grid {
-                grid-template-columns: 1fr;
+            .skill-section {
+                flex-direction: column !important;
+                text-align: center;
+                gap: 2rem;
+            }
+
+            .skill-section::after {
+                display: none;
+            }
+
+            .skill-title::after {
+                left: 50% !important;
+                right: auto !important;
+                transform: translateX(-50%);
             }
         }
 
@@ -943,6 +1009,16 @@
             
             .contact-info {
                 grid-template-columns: 1fr;
+            }
+
+            .skill-icon {
+                width: 80px;
+                height: 80px;
+                font-size: 2rem;
+            }
+
+            .skill-title {
+                font-size: 1.5rem;
             }
         }
 
@@ -1066,7 +1142,7 @@
         </div>
     </section>
 
-    <!-- Enhanced Skills Section -->
+    <!-- NEW: Flowing Skills Section - No Boxes! -->
     <section id="skills" class="section">
         <div class="container">
             <div class="section-title reveal">
@@ -1075,71 +1151,107 @@
             </div>
 
             <div class="skills-container">
-                <div class="skills-grid">
-                    <div class="skill-category reveal">
-                        <h3><i class="fas fa-code"></i> Programming Languages</h3>
-                        <div class="skill-tags">
-                            <span class="skill-tag">JavaScript</span>
-                            <span class="skill-tag">Python</span>
-                            <span class="skill-tag">Java</span>
-                            <span class="skill-tag">Kotlin</span>
-                            <span class="skill-tag">C++</span>
-                            <span class="skill-tag">GoLang</span>
+                <div class="skills-flow">
+                    <div class="skill-section reveal">
+                        <div class="skill-icon">
+                            <i class="fas fa-code"></i>
+                        </div>
+                        <div class="skill-content">
+                            <h3 class="skill-title">Programming Languages</h3>
+                            <p class="skill-description">Crafting robust solutions with modern programming languages, from dynamic web development to efficient system programming.</p>
+                            <div class="skill-items">
+                                <span class="skill-item">JavaScript</span>
+                                <span class="skill-item">Python</span>
+                                <span class="skill-item">Java</span>
+                                <span class="skill-item">Kotlin</span>
+                                <span class="skill-item">C++</span>
+                                <span class="skill-item">GoLang</span>
+                            </div>
                         </div>
                     </div>
 
-                    <div class="skill-category reveal">
-                        <h3><i class="fas fa-laptop-code"></i> Frontend Magic</h3>
-                        <div class="skill-tags">
-                            <span class="skill-tag">React.js</span>
-                            <span class="skill-tag">Angular</span>
-                            <span class="skill-tag">HTML5</span>
-                            <span class="skill-tag">CSS3</span>
-                            <span class="skill-tag">UI/UX Design</span>
+                    <div class="skill-section reveal">
+                        <div class="skill-icon">
+                            <i class="fas fa-paint-brush"></i>
+                        </div>
+                        <div class="skill-content">
+                            <h3 class="skill-title">Frontend Magic</h3>
+                            <p class="skill-description">Creating beautiful, responsive, and interactive user experiences that captivate and engage users across all devices.</p>
+                            <div class="skill-items">
+                                <span class="skill-item">React.js</span>
+                                <span class="skill-item">Angular</span>
+                                <span class="skill-item">HTML5</span>
+                                <span class="skill-item">CSS3</span>
+                                <span class="skill-item">UI/UX Design</span>
+                            </div>
                         </div>
                     </div>
 
-                    <div class="skill-category reveal">
-                        <h3><i class="fas fa-server"></i> Backend Power</h3>
-                        <div class="skill-tags">
-                            <span class="skill-tag">Node.js</span>
-                            <span class="skill-tag">Express.js</span>
-                            <span class="skill-tag">REST APIs</span>
-                            <span class="skill-tag">Flask</span>
+                    <div class="skill-section reveal">
+                        <div class="skill-icon">
+                            <i class="fas fa-server"></i>
+                        </div>
+                        <div class="skill-content">
+                            <h3 class="skill-title">Backend Power</h3>
+                            <p class="skill-description">Building scalable server-side architectures and APIs that handle complex business logic with performance and reliability.</p>
+                            <div class="skill-items">
+                                <span class="skill-item">Node.js</span>
+                                <span class="skill-item">Express.js</span>
+                                <span class="skill-item">REST APIs</span>
+                                <span class="skill-item">Flask</span>
+                            </div>
                         </div>
                     </div>
 
-                    <div class="skill-category reveal">
-                        <h3><i class="fas fa-robot"></i> AI/ML & Automation</h3>
-                        <div class="skill-tags">
-                            <span class="skill-tag">n8n</span>
-                            <span class="skill-tag">TensorFlow</span>
-                            <span class="skill-tag">OpenCV</span>
-                            <span class="skill-tag">Bubble.io</span>
-                            <span class="skill-tag">WeWeb</span>
-                            <span class="skill-tag">Zapier</span>
+                    <div class="skill-section reveal">
+                        <div class="skill-icon">
+                            <i class="fas fa-robot"></i>
+                        </div>
+                        <div class="skill-content">
+                            <h3 class="skill-title">AI/ML & Automation</h3>
+                            <p class="skill-description">Leveraging artificial intelligence and machine learning to create intelligent automation workflows and data-driven solutions.</p>
+                            <div class="skill-items">
+                                <span class="skill-item">n8n</span>
+                                <span class="skill-item">TensorFlow</span>
+                                <span class="skill-item">OpenCV</span>
+                                <span class="skill-item">Bubble.io</span>
+                                <span class="skill-item">WeWeb</span>
+                                <span class="skill-item">Zapier</span>
+                            </div>
                         </div>
                     </div>
 
-                    <div class="skill-category reveal">
-                        <h3><i class="fas fa-database"></i> Data Mastery</h3>
-                        <div class="skill-tags">
-                            <span class="skill-tag">MongoDB</span>
-                            <span class="skill-tag">Firebase</span>
-                            <span class="skill-tag">PostgreSQL</span>
-                            <span class="skill-tag">SQL</span>
+                    <div class="skill-section reveal">
+                        <div class="skill-icon">
+                            <i class="fas fa-database"></i>
+                        </div>
+                        <div class="skill-content">
+                            <h3 class="skill-title">Data Mastery</h3>
+                            <p class="skill-description">Designing and managing efficient database systems that store, retrieve, and process data at scale with optimal performance.</p>
+                            <div class="skill-items">
+                                <span class="skill-item">MongoDB</span>
+                                <span class="skill-item">Firebase</span>
+                                <span class="skill-item">PostgreSQL</span>
+                                <span class="skill-item">SQL</span>
+                            </div>
                         </div>
                     </div>
 
-                    <div class="skill-category reveal">
-                        <h3><i class="fas fa-tools"></i> DevOps Arsenal</h3>
-                        <div class="skill-tags">
-                            <span class="skill-tag">Git</span>
-                            <span class="skill-tag">GitHub</span>
-                            <span class="skill-tag">AWS</span>
-                            <span class="skill-tag">Docker</span>
-                            <span class="skill-tag">JIRA</span>
-                            <span class="skill-tag">Postman</span>
+                    <div class="skill-section reveal">
+                        <div class="skill-icon">
+                            <i class="fas fa-tools"></i>
+                        </div>
+                        <div class="skill-content">
+                            <h3 class="skill-title">DevOps Arsenal</h3>
+                            <p class="skill-description">Streamlining development workflows with modern DevOps practices, ensuring smooth deployment and collaboration processes.</p>
+                            <div class="skill-items">
+                                <span class="skill-item">Git</span>
+                                <span class="skill-item">GitHub</span>
+                                <span class="skill-item">AWS</span>
+                                <span class="skill-item">Docker</span>
+                                <span class="skill-item">JIRA</span>
+                                <span class="skill-item">Postman</span>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -1206,7 +1318,7 @@
         </div>
     </section>
 
-    <!-- Revolutionary Projects Section -->
+    <!-- Smaller Projects Section -->
     <section id="projects" class="section projects">
         <div class="container">
             <div class="section-title reveal">
@@ -1218,16 +1330,16 @@
                 <div class="project-card reveal">
                     <div class="project-header">
                         <div class="project-icon">
-                            <svg viewBox="0 0 64 64" width="50" height="50" fill="white">
+                            <svg viewBox="0 0 64 64" width="35" height="35" fill="white">
                                 <path d="M32 8c-13.255 0-24 10.745-24 24s10.745 24 24 24 24-10.745 24-24S45.255 8 32 8zm0 4c11.046 0 20 8.954 20 20s-8.954 20-20 20S12 43.046 12 32 20.954 12 32 12zm-8 12v8h16v-8H24zm2 2h12v4H26v-4zm-2 10v8h16v-8H24zm2 2h12v4H26v-4z"/>
                                 <circle cx="32" cy="20" r="2" fill="white"/>
                                 <circle cx="32" cy="44" r="2" fill="white"/>
                             </svg>
                         </div>
-                        <div class="project-title">AI-Powered Company Chatbot</div>
+                        <div class="project-title">AI-Powered Chatbot</div>
                     </div>
                     <div class="project-content">
-                        <p>Revolutionary intelligent chatbot built with cutting-edge n8n workflows and Retrieval-Augmented Generation (RAG) architecture. Seamlessly integrates Pinecone vector database with Google Drive API for intelligent document processing and contextual responses.</p>
+                        <p>Intelligent chatbot with n8n workflows and RAG architecture, integrating Pinecone vector database with Google Drive API for smart document processing.</p>
                         <div class="tech-stack">
                             <span class="tech-tag">n8n</span>
                             <span class="tech-tag">OpenAI GPT</span>
@@ -1240,7 +1352,7 @@
                 <div class="project-card reveal">
                     <div class="project-header">
                         <div class="project-icon">
-                            <svg viewBox="0 0 64 64" width="50" height="50" fill="white">
+                            <svg viewBox="0 0 64 64" width="35" height="35" fill="white">
                                 <path d="M16 12L32 4l16 8v16l-16 8-16-8V12z"/>
                                 <path d="M16 28l16 8 16-8v16l-16 8-16-8V28z"/>
                                 <path d="M32 20l-12-6v12l12 6 12-6V14l-12 6z"/>
@@ -1249,12 +1361,12 @@
                         <div class="project-title">Customer Onboarding Automation</div>
                     </div>
                     <div class="project-content">
-                        <p>Game-changing automated customer onboarding system powered by n8n with AI-driven document analysis. Achieved 70% reduction in manual onboarding time through intelligent workflow automation and smart data processing.</p>
+                        <p>Automated onboarding system with AI document analysis. Achieved 70% reduction in manual time through intelligent workflow automation.</p>
                         <div class="tech-stack">
                             <span class="tech-tag">n8n</span>
-                            <span class="tech-tag">OpenAI Models</span>
+                            <span class="tech-tag">OpenAI</span>
                             <span class="tech-tag">Vector Store</span>
-                            <span class="tech-tag">Document Processing</span>
+                            <span class="tech-tag">Document AI</span>
                         </div>
                     </div>
                 </div>
@@ -1262,10 +1374,9 @@
                 <div class="project-card reveal">
                     <div class="project-header">
                         <div class="project-icon">
-                            <svg viewBox="0 0 64 64" width="50" height="50" fill="white">
+                            <svg viewBox="0 0 64 64" width="35" height="35" fill="white">
                                 <path d="M8 16h48v32H8V16zm4 4v24h40V20H12z"/>
                                 <path d="M16 24h8v8h-8v-8zm12 0h20v2H28v-2zm0 4h16v2H28v-2zm0 4h12v2H28v-2z"/>
-                                <path d="M16 36h32v8H16v-8zm4 2v4h24v-4H20z"/>
                                 <circle cx="20" cy="28" r="3" fill="none" stroke="white" stroke-width="2"/>
                                 <path d="M16 32l4-2 4 2" stroke="white" stroke-width="1.5" fill="none"/>
                             </svg>
@@ -1273,16 +1384,16 @@
                         <div class="project-title">Idra'ak - Sign Language Translator</div>
                     </div>
                     <div class="project-content">
-                        <p>Groundbreaking AI-powered Android application that bridges communication gaps by translating Urdu Sign Language to text and audio in real-time. Features advanced TensorFlow models with Flask backend for lightning-fast video processing.</p>
+                        <p>AI-powered Android app translating Urdu Sign Language to text and audio in real-time using TensorFlow and OpenCV.</p>
                         <div class="tech-stack">
                             <span class="tech-tag">Python</span>
                             <span class="tech-tag">TensorFlow</span>
                             <span class="tech-tag">OpenCV</span>
-                            <span class="tech-tag">Android Studio</span>
+                            <span class="tech-tag">Android</span>
                         </div>
                         <div class="project-links">
                             <a href="https://github.com/samanjamill/Idraak" class="project-link">
-                                <i class="fab fa-github"></i> View Code
+                                <i class="fab fa-github"></i> Code
                             </a>
                         </div>
                     </div>
@@ -1291,18 +1402,17 @@
                 <div class="project-card reveal">
                     <div class="project-header">
                         <div class="project-icon">
-                            <svg viewBox="0 0 64 64" width="50" height="50" fill="white">
+                            <svg viewBox="0 0 64 64" width="35" height="35" fill="white">
                                 <circle cx="20" cy="20" r="8" fill="none" stroke="white" stroke-width="2"/>
                                 <circle cx="44" cy="20" r="8" fill="none" stroke="white" stroke-width="2"/>
                                 <circle cx="32" cy="44" r="8" fill="none" stroke="white" stroke-width="2"/>
                                 <path d="M28 20h8M36 28l-8 8M28 36l-8-8" stroke="white" stroke-width="2"/>
-                                <path d="M20 28v8M44 28v8" stroke="white" stroke-width="2"/>
                             </svg>
                         </div>
-                        <div class="project-title">VeteranMeet Social Platform</div>
+                        <div class="project-title">VeteranMeet Platform</div>
                     </div>
                     <div class="project-content">
-                        <p>Dynamic social networking platform designed specifically for veterans, featuring robust user authentication, real-time messaging, and community-building tools. Built with modern React architecture and scalable backend infrastructure.</p>
+                        <p>Social networking platform for veterans with real-time messaging, authentication, and community-building tools.</p>
                         <div class="tech-stack">
                             <span class="tech-tag">React.js</span>
                             <span class="tech-tag">Node.js</span>
@@ -1311,7 +1421,7 @@
                         </div>
                         <div class="project-links">
                             <a href="https://github.com/samanjamill/VeteranMeet-WebApplication" class="project-link">
-                                <i class="fab fa-github"></i> View Code
+                                <i class="fab fa-github"></i> Code
                             </a>
                         </div>
                     </div>
@@ -1320,18 +1430,17 @@
                 <div class="project-card reveal">
                     <div class="project-header">
                         <div class="project-icon">
-                            <svg viewBox="0 0 64 64" width="50" height="50" fill="white">
+                            <svg viewBox="0 0 64 64" width="35" height="35" fill="white">
                                 <rect x="8" y="16" width="48" height="32" rx="4" fill="none" stroke="white" stroke-width="2"/>
                                 <path d="M16 24h32v2H16v-2zm0 6h24v2H16v-2zm0 6h20v2H16v-2z"/>
                                 <circle cx="44" cy="32" r="6" fill="none" stroke="white" stroke-width="2"/>
                                 <path d="M44 28v8M40 32h8" stroke="white" stroke-width="2"/>
-                                <rect x="12" y="12" width="8" height="4" rx="1" fill="white"/>
                             </svg>
                         </div>
-                        <div class="project-title">Jannat Noor Pharmacy System</div>
+                        <div class="project-title">Jannat Noor Pharmacy</div>
                     </div>
                     <div class="project-content">
-                        <p>Comprehensive pharmacy management solution featuring advanced inventory tracking, barcode scanning functionality, and intelligent sales analytics. Includes AI-powered insights for inventory optimization and business intelligence.</p>
+                        <p>Comprehensive pharmacy system with inventory tracking, barcode scanning, and AI-powered business intelligence.</p>
                         <div class="tech-stack">
                             <span class="tech-tag">Python</span>
                             <span class="tech-tag">PostgreSQL</span>
@@ -1343,19 +1452,17 @@
                 <div class="project-card reveal">
                     <div class="project-header">
                         <div class="project-icon">
-                            <svg viewBox="0 0 64 64" width="50" height="50" fill="white">
+                            <svg viewBox="0 0 64 64" width="35" height="35" fill="white">
                                 <rect x="12" y="8" width="40" height="48" rx="8" fill="none" stroke="white" stroke-width="2"/>
                                 <rect x="16" y="16" width="32" height="4" rx="2" fill="white"/>
                                 <circle cx="32" cy="32" r="8" fill="none" stroke="white" stroke-width="2"/>
                                 <circle cx="32" cy="32" r="3" fill="white"/>
-                                <rect x="20" y="44" width="24" height="2" fill="white"/>
-                                <rect x="24" y="48" width="16" height="2" fill="white"/>
                             </svg>
                         </div>
                         <div class="project-title">Under3 Mobile App</div>
                     </div>
                     <div class="project-content">
-                        <p>Innovative trauma-informed mobile application with integrated ML screening capabilities, specifically designed to support parents with children under 3. Features secure data management and evidence-based assessment tools.</p>
+                        <p>Trauma-informed mobile app with ML screening for parents with children under 3, featuring secure data management.</p>
                         <div class="tech-stack">
                             <span class="tech-tag">Firebase</span>
                             <span class="tech-tag">Kotlin</span>
@@ -1552,7 +1659,7 @@
         }
 
         // Enhanced button ripple effect
-        document.querySelectorAll('.btn, .project-link, .skill-tag').forEach(btn => {
+        document.querySelectorAll('.btn, .project-link, .skill-item').forEach(btn => {
             btn.addEventListener('click', function(e) {
                 const ripple = document.createElement('span');
                 const rect = this.getBoundingClientRect();
@@ -1576,31 +1683,39 @@
             });
         });
 
-        // Dynamic skill tag interactions
-        document.querySelectorAll('.skill-tag').forEach(tag => {
-            tag.addEventListener('mouseenter', function() {
+        // Dynamic skill item interactions
+        document.querySelectorAll('.skill-item').forEach(item => {
+            item.addEventListener('mouseenter', function() {
                 this.style.transform = 'translateY(-5px) scale(1.1) rotateZ(2deg)';
                 this.style.boxShadow = '0 10px 30px rgba(85, 25, 139, 0.5)';
             });
             
-            tag.addEventListener('mouseleave', function() {
+            item.addEventListener('mouseleave', function() {
                 this.style.transform = 'translateY(0) scale(1) rotateZ(0deg)';
                 this.style.boxShadow = 'none';
             });
         });
 
-        // Project card advanced hover effects
+        // Project card hover effects
         document.querySelectorAll('.project-card').forEach(card => {
             card.addEventListener('mouseenter', function() {
-                this.style.transform = 'translateY(-20px) rotateX(5deg) scale(1.02)';
-                this.style.boxShadow = '0 30px 100px rgba(85, 25, 139, 0.4)';
+                this.style.transform = 'translateY(-15px) scale(1.02)';
+                this.style.boxShadow = '0 25px 80px rgba(85, 25, 139, 0.4)';
             });
             
             card.addEventListener('mouseleave', function() {
-                this.style.transform = 'translateY(0) rotateX(0deg) scale(1)';
-                this.style.boxShadow = '0 10px 40px rgba(0,0,0,0.1)';
+                this.style.transform = 'translateY(0) scale(1)';
+                this.style.boxShadow = '0 8px 30px rgba(0,0,0,0.1)';
             });
         });
+
+        // Skill section stagger animation
+        function animateSkillSections() {
+            const skillSections = document.querySelectorAll('.skill-section');
+            skillSections.forEach((section, index) => {
+                section.style.animationDelay = `${index * 0.2}s`;
+            });
+        }
 
         // Initialize all animations and effects
         document.addEventListener('DOMContentLoaded', function() {
@@ -1609,6 +1724,9 @@
             
             // Initialize scroll reveal
             revealOnScroll();
+            
+            // Animate skill sections
+            animateSkillSections();
             
             // Initialize typing animation after a delay
             setTimeout(() => {
@@ -1625,15 +1743,6 @@
             }, 100);
         });
 
-        // Advanced cursor trail effect (optional)
-        let mouseX = 0, mouseY = 0;
-        let trailing = [];
-
-        document.addEventListener('mousemove', function(e) {
-            mouseX = e.clientX;
-            mouseY = e.clientY;
-        });
-
         // Parallax effect for hero section
         window.addEventListener('scroll', function() {
             const scrolled = window.pageYOffset;
@@ -1643,6 +1752,13 @@
             if (hero && heroImage) {
                 heroImage.style.transform = `translateY(${scrolled * 0.2}px)`;
             }
+            
+            // Skill icons parallax
+            const skillIcons = document.querySelectorAll('.skill-icon');
+            skillIcons.forEach((icon, index) => {
+                const rate = scrolled * (0.1 + index * 0.02);
+                icon.style.transform = `translateY(${rate}px) rotate(${rate * 0.5}deg)`;
+            });
         });
 
         // Dynamic gradient animation
@@ -1655,6 +1771,19 @@
                 }
             });
         }, 50);
+
+        // Intersection Observer for skill icons animation
+        const skillIconObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'bounce 2s ease-in-out infinite';
+                }
+            });
+        }, { threshold: 0.5 });
+
+        document.querySelectorAll('.skill-icon').forEach(icon => {
+            skillIconObserver.observe(icon);
+        });
     </script>
 </body>
 </html>
